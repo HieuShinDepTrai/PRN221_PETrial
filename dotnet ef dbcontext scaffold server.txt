@@ -1,0 +1,11 @@
+dotnet ef dbcontext scaffold "server=HIEUSHIN\HIEUSHIN; database=PRN_Spr23_B1; uid=sa; pwd=1; Trustservercertificate=true;integrated security=true" microsoft.entityframeworkcore.sqlserver --output-dir DataAccess
+
+var connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetConnectionString("MyDB");
+optionsBuilder.UseSqlServer(connectionString);
+
+"ConnectionStrings": {
+    "MyDB": "server=HIEUSHIN\\HIEUSHIN; database=PRN221_Trial; Trustservercertificate=true; integrated security=true"
+ }
+
+<input type="hidden" name="ProductId" value="@product.ProductId" asp-for="@Model.ProductUpdate.ProductId" />
+<input type="text" name="ProductName" value="" asp-for="@Model.ProductUpdate.ProductName" />

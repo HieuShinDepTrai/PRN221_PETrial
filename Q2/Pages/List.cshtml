@@ -1,0 +1,53 @@
+﻿@page
+@model Q2.Pages.ListModel
+@{
+}
+<h1 style="font-weight:200">Service Manager</h1>
+<form method="get">
+    <table>
+        <tr>
+            <td width="100">Room</td>
+            <td width="100"><input name="room" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input style="margin-top:10px" type="submit" value="Search" /></td>
+        </tr>
+    </table>
+</form>
+<h2 style="margin-top:15px">List of services</h2>
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="xmlFile" /> <input type="submit" value="Import" />
+</form>
+<table style="margin-top:15px" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>RoomTitle</th>
+            <th>FeeType</th>
+            <th>Month</th>
+            <th>Year</th>
+            <th>Amount</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var service in Model.services)
+        {
+            <tr>
+                <td>@service.RoomTitle</td>
+                <td>@service.FeeType</td>
+                <td>@service.Month</td>
+                <td>@service.Year</td>
+                <td>@service.Amount</td>
+                @if(service.Employee == null || service.PaymentDate == null)
+                {
+                    <td>Unpaid</td>
+                }
+                else
+                {
+                    <td>Service has been paid. Employee: @service.EmployeeNavigation.Name</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
